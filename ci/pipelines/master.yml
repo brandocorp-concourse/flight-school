@@ -1,0 +1,14 @@
+resources:
+- name: flight-school
+  type: git
+  source:
+    uri: https://github.com/brandocorp-concourse/flight-school
+    branch: master
+
+jobs:
+- name: verify
+  plan:
+  - get: flight-school
+    trigger: true
+  - task: unit-test
+    file: flight-school/ci/tasks/unit.yml
